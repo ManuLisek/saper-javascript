@@ -27,8 +27,11 @@ body {
 }
 
 .cell {
-  background-color: $cell-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: $cell-size;
   height: $cell-size;
   border: 1px solid black;
+  background-color: $cell-color;
 }
