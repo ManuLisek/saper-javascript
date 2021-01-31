@@ -31,4 +31,6 @@ function setBombs(){
   bombsArray.forEach(bomb => bomb.innerHTML = bombIcon);
 }
 
-setBombs();
+
+
+btnStart.addEventListener('click', setBombs);
