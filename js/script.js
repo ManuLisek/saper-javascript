@@ -44,8 +44,8 @@ function setBombs(){
     if(indexOfBomb - cellsInRow >= 0 && cells[indexOfBomb - cellsInRow].innerHTML !== bombIcon){
       cells[indexOfBomb - cellsInRow].textContent = '1';
     }
-    //down
-    if(indexOfBomb + cellsInRow <= cells.length  && cells[indexOfBomb + cellsInRow].innerHTML !== bombIcon){
+    //down*
+    if(indexOfBomb + cellsInRow < cells.length  && cells[indexOfBomb + cellsInRow].innerHTML !== bombIcon){
       cells[indexOfBomb + cellsInRow].textContent = '1';
     }
     //up left
@@ -56,12 +56,12 @@ function setBombs(){
     if((indexOfBomb + 1)%10 !== 0 && indexOfBomb - cellsInRow >= 0 && cells[indexOfBomb - cellsInRow + 1].innerHTML !== bombIcon){
       cells[indexOfBomb - cellsInRow + 1].textContent = '1';
     }
-    //down left
-    if(indexOfBomb % 10 !== 0 && indexOfBomb + cellsInRow -1 <= cells.length && cells[indexOfBomb + cellsInRow - 1].innerHTML !== bombIcon){
+    //down left*
+    if(indexOfBomb % 10 !== 0 && indexOfBomb + cellsInRow -1 < cells.length && cells[indexOfBomb + cellsInRow - 1].innerHTML !== bombIcon){
       cells[indexOfBomb + cellsInRow - 1].textContent = '1';
     }
     //down right
-    if((indexOfBomb + 1)%10 !== 0 && indexOfBomb + cellsInRow + 1 <= cells.length && cells[indexOfBomb + cellsInRow + 1].innerHTML !== bombIcon){
+    if((indexOfBomb + 1)%10 !== 0 && indexOfBomb + cellsInRow + 1 < cells.length && cells[indexOfBomb + cellsInRow + 1].innerHTML !== bombIcon){
       cells[indexOfBomb + cellsInRow + 1].textContent = '1';
     }
   })
