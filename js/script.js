@@ -31,13 +31,15 @@ function setBombs(){
   bombsArray.forEach(bomb => bomb.innerHTML = bombIcon);
   const indexesOfBombs = [...cells].map((e, i) => e.innerHTML !== '' ? i : '').filter(Number.isFinite);
   indexesOfBombs.map(indexOfBomb => {
+
+    
     
     //right
-    if((indexOfBomb + 1)%10 !== 0 && cells[indexOfBomb + 1].innerHTML !== bombIcon){
+    if((indexOfBomb + 1) % cellsInRow !== 0 && cells[indexOfBomb + 1].innerHTML !== bombIcon){
       cells[indexOfBomb + 1].textContent = '1';
     }
     //left
-    if(indexOfBomb % 10 !== 0 && cells[indexOfBomb - 1].innerHTML !== bombIcon){
+    if(indexOfBomb % cellsInRow !== 0 && cells[indexOfBomb - 1].innerHTML !== bombIcon){
       cells[indexOfBomb - 1].textContent = '1';
     }
     //up
@@ -49,19 +51,19 @@ function setBombs(){
       cells[indexOfBomb + cellsInRow].textContent = '1';
     }
     //up left
-    if(indexOfBomb % 10 !== 0 && indexOfBomb - cellsInRow >= 0 && cells[indexOfBomb - cellsInRow - 1].innerHTML !== bombIcon){
+    if(indexOfBomb % cellsInRow !== 0 && indexOfBomb - cellsInRow >= 0 && cells[indexOfBomb - cellsInRow - 1].innerHTML !== bombIcon){
       cells[indexOfBomb - cellsInRow - 1].textContent = '1';
     }
     //up right
-    if((indexOfBomb + 1)%10 !== 0 && indexOfBomb - cellsInRow >= 0 && cells[indexOfBomb - cellsInRow + 1].innerHTML !== bombIcon){
+    if((indexOfBomb + 1) % cellsInRow !== 0 && indexOfBomb - cellsInRow >= 0 && cells[indexOfBomb - cellsInRow + 1].innerHTML !== bombIcon){
       cells[indexOfBomb - cellsInRow + 1].textContent = '1';
     }
     //down left*
-    if(indexOfBomb % 10 !== 0 && indexOfBomb + cellsInRow -1 < cells.length && cells[indexOfBomb + cellsInRow - 1].innerHTML !== bombIcon){
+    if(indexOfBomb % cellsInRow !== 0 && indexOfBomb + cellsInRow -1 < cells.length && cells[indexOfBomb + cellsInRow - 1].innerHTML !== bombIcon){
       cells[indexOfBomb + cellsInRow - 1].textContent = '1';
     }
     //down right
-    if((indexOfBomb + 1)%10 !== 0 && indexOfBomb + cellsInRow + 1 < cells.length && cells[indexOfBomb + cellsInRow + 1].innerHTML !== bombIcon){
+    if((indexOfBomb + 1) % cellsInRow !== 0 && indexOfBomb + cellsInRow + 1 < cells.length && cells[indexOfBomb + cellsInRow + 1].innerHTML !== bombIcon){
       cells[indexOfBomb + cellsInRow + 1].textContent = '1';
     }
   })
