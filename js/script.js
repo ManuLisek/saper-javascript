@@ -29,7 +29,7 @@ function setBombs(){
   }
 
   bombsArray.forEach(bomb => bomb.innerHTML = bombIcon);
-  const indexesOfBombs = [...cells].map((e, i) => e.innerHTML !== '' ? i : '').filter(Number);
+  const indexesOfBombs = [...cells].map((e, i) => e.innerHTML !== '' ? i : '').filter(Number.isFinite);
   indexesOfBombs.map(indexOfBomb => {
     
     //right
