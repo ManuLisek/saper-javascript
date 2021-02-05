@@ -47,35 +47,51 @@ function setBombs(){
     
     //right
     if(rightCondition && right.innerHTML !== bombIcon){
-      right.textContent = '1';
+      let sum = Number(right.textContent);
+      sum += 1;
+      right.textContent = sum;
     }
     //left
     if(leftCondition && left.innerHTML !== bombIcon){
-      left.textContent = '1';
+      let sum = Number(left.textContent);
+      sum += 1;
+      left.textContent = sum;
     }
     //up
     if(upCondition && up.innerHTML !== bombIcon){
-      up.textContent = '1';
+      let sum = Number(up.textContent);
+      sum += 1;
+      up.textContent = sum;
     }
     //down*
-    if(downCondition  && down.innerHTML !== bombIcon){
-      down.textContent = '1';
+    if(downCondition && down.innerHTML !== bombIcon){
+      let sum = Number(down.textContent);
+      sum += 1;
+      down.textContent = sum;
     }
     //up left
     if(leftCondition && upCondition && upLeft.innerHTML !== bombIcon){
-      upLeft.textContent = '1';
+      let sum = Number(upLeft.textContent);
+      sum += 1;
+      upLeft.textContent = sum;
     }
     //up right
     if(rightCondition && upCondition && upRight.innerHTML !== bombIcon){
-      upRight.textContent = '1';
+      let sum = Number(upRight.textContent);
+      sum += 1;
+      upRight.textContent = sum;
     }
     //down left*
     if(leftCondition && downCondition && downLeft.innerHTML !== bombIcon){
-      cells[indexOfBomb + cellsInRow - 1].textContent = '1';
+      let sum = Number(downLeft.textContent);
+      sum += 1;
+      downLeft.textContent = sum;
     }
     //down right
     if(rightCondition && downCondition && downRight.innerHTML !== bombIcon){
-      downRight.textContent = '1';
+      let sum = Number(downRight.textContent);
+      sum += 1;
+      downRight.textContent = sum;
     }
   })
 }
