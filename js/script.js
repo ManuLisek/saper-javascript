@@ -98,4 +98,7 @@ function setBombs(){
 
 
 
-btnStart.addEventListener('click', setBombs);
+btnStart.addEventListener('click', function startGame(){
+  btnStart.disabled = true;
+  setBombs();
+});
