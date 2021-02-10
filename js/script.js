@@ -110,6 +110,13 @@ cells.forEach(cell => {
   cell.addEventListener('click', function handleShowCell(){
    const clickedCell = this;
    clickedCell.classList.remove('hidden');
-   
+   if(clickedCell.innerHTML === bombIcon){
+     for(let bomb of bombsArray){
+       bomb.classList.remove('hidden');
+       bomb.removeChild(bomb.lastElementChild);
+       bomb.innerHTML = bombIcon
+     }
+     clickedCell.style.color = 'red';
+   }
   })
 })
