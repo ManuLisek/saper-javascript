@@ -102,3 +102,14 @@ btnStart.addEventListener('click', function startGame(){
   btnStart.disabled = true;
   setBombs();
 });
+
+
+const cells = document.querySelectorAll('.cell');
+
+cells.forEach(cell => {
+  cell.addEventListener('click', function handleShowCell(){
+   const clickedCell = this;
+   clickedCell.classList.remove('hidden');
+   
+  })
+})
