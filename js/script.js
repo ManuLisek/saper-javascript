@@ -1,5 +1,7 @@
 'use strict'
 const btnStart = document.querySelector('.start');
+const btnEasy = document.querySelector('.easy');
+const btnDifficult = document.querySelector('.difficult');
 const container = document.querySelector('.container');
 const bombIcon = '<i class="fas fa-bomb"></i>';
 const bombsArray = [];
