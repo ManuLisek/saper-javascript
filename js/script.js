@@ -107,6 +107,7 @@ function setBombs(){
 btnStart.addEventListener('click', function startGame(){
   btnStart.disabled = true;
   setBombs();
+  handleListeners();
 });
 
 btnEasy.addEventListener('click', function makeEasy(){
@@ -130,6 +131,7 @@ btnDifficult.addEventListener('click', function makeDifficult(){
 })
 
 
+function handleListeners(){
 const cells = document.querySelectorAll('.cell');
 
 cells.forEach(cell => {
@@ -146,5 +148,5 @@ cells.forEach(cell => {
    }
   })
 })
-
+}
 
