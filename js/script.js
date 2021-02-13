@@ -6,13 +6,17 @@ const container = document.querySelector('.container');
 const bombIcon = '<i class="fas fa-bomb"></i>';
 const bombsArray = [];
 const amountOfBombs = 10;
-const cellsInRow = 10;
+const cellsInRow = 8;
+const cellSize = 30;
 
 function createGameboard(){
-  
-  for(let i = 0; i < 100; i++){
+  const size = cellSize * cellsInRow
+  container.setAttribute('style', `width:${size}px; height:${size}px;`)
+
+  for(let i = 0; i < cellsInRow * cellsInRow; i++){
     const cell = document.createElement('div');
     cell.className = 'cell hidden';
+    cell.setAttribute('style', `width:${cellSize}px; height:${cellSize}px;`)
     container.appendChild(cell);
     }
 }
