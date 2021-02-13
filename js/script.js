@@ -4,10 +4,10 @@ const btnEasy = document.querySelector('.easy');
 const btnDifficult = document.querySelector('.difficult');
 const container = document.querySelector('.container');
 const bombIcon = '<i class="fas fa-bomb"></i>';
-const bombsArray = [];
-const amountOfBombs = 10;
-const cellsInRow = 8;
-const cellSize = 30;
+let bombsArray = [];
+let amountOfBombs = 12;
+let cellsInRow = 12;
+let cellSize = 26;
 
 function createGameboard(){
   const size = cellSize * cellsInRow
@@ -109,6 +109,16 @@ btnStart.addEventListener('click', function startGame(){
   setBombs();
 });
 
+btnEasy.addEventListener('click', function makeEasy(){
+  container.textContent = "";
+  btnStart.disabled = false;
+  bombsArray = [];
+  cellSize = 30
+  cellsInRow = 8;
+  amountOfBombs = 5;
+  createGameboard();
+})
+
 
 const cells = document.querySelectorAll('.cell');
 
@@ -126,3 +136,5 @@ cells.forEach(cell => {
    }
   })
 })
+
+
