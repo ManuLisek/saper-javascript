@@ -15,23 +15,6 @@ body {
       align-items: center;
 }
 
-.game {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-direction: column;
-      flex-direction: column;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
-
-.container {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  width: 300px;
-}
-
 .cell {
   display: -ms-flexbox;
   display: flex;
@@ -43,6 +26,27 @@ body {
   height: 30px;
   border: 1px solid black;
   background-color: antiquewhite;
+}
+
+.container {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 300px;
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+.game {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .hidden {

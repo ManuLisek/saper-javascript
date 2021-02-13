@@ -106,6 +106,7 @@ function setBombs(){
 
 btnStart.addEventListener('click', function startGame(){
   btnStart.disabled = true;
+  container.classList.remove('disabled');
   setBombs();
   handleListeners();
 });
@@ -117,6 +118,7 @@ btnEasy.addEventListener('click', function makeEasy(){
   cellSize = 30
   cellsInRow = 8;
   amountOfBombs = 6;
+  container.classList.add('disabled');
   createGameboard();
 })
 
@@ -127,6 +129,7 @@ btnDifficult.addEventListener('click', function makeDifficult(){
   cellSize = 26
   cellsInRow = 11;
   amountOfBombs = 12;
+  container.classList.add('disabled');
   createGameboard();
 })
 
@@ -142,9 +145,10 @@ cells.forEach(cell => {
      for(let bomb of bombsArray){
        bomb.classList.remove('hidden');
        bomb.removeChild(bomb.lastElementChild);
-       bomb.innerHTML = bombIcon
+       bomb.innerHTML = bombIcon;
      }
      clickedCell.style.color = 'red';
+     container.classList.add('disabled');
    }
   })
 })

@@ -15,18 +15,6 @@ body {
   align-items: center;
 }
 
-.game {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-}
-
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  width: 300px;
-}
-
 .cell {
   display: flex;
   justify-content: center;
@@ -35,6 +23,22 @@ body {
   height: $cell-size;
   border: 1px solid black;
   background-color: $cell-color-light;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 300px;
+}
+
+.disabled {
+  pointer-events: none;
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .hidden {
