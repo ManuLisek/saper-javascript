@@ -115,7 +115,17 @@ btnEasy.addEventListener('click', function makeEasy(){
   bombsArray = [];
   cellSize = 30
   cellsInRow = 8;
-  amountOfBombs = 5;
+  amountOfBombs = 6;
+  createGameboard();
+})
+
+btnDifficult.addEventListener('click', function makeDifficult(){
+  container.textContent = "";
+  btnStart.disabled = false;
+  bombsArray = [];
+  cellSize = 26
+  cellsInRow = 11;
+  amountOfBombs = 12;
   createGameboard();
 })
 
