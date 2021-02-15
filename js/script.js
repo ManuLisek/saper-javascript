@@ -4,6 +4,8 @@ const btnEasy = document.querySelector('.easy');
 const btnDifficult = document.querySelector('.difficult');
 const container = document.querySelector('.container');
 const bombIcon = '<i class="fas fa-bomb"></i>';
+const flagIcon = '<i class="fas fa-flag"></i>';
+const questionIcon = '<i class="fas fa-question"></i>';
 let bombsArray = [];
 let amountOfBombs = 12;
 let cellsInRow = 12;
@@ -151,6 +153,26 @@ cells.forEach(cell => {
      container.classList.add('disabled');
    }
   })
+
+  cell.addEventListener('contextmenu', function handleFlag(e){
+    const clickedCell = this;
+    e.preventDefault();
+  
+    if(e.button == 2 && clickedCell.classList.contains('hidden')){
+   
+      if(!clickedCell.innerHTML.includes(flagIcon) && !clickedCell.innerHTML.includes(questionIcon)){
+        clickedCell.innerHTML += flagIcon;
+      }
+      else if(clickedCell.innerHTML.includes(flagIcon) ){
+        clickedCell.removeChild(clickedCell.lastElementChild);
+        clickedCell.innerHTML += questionIcon;
+      }
+      else if(clickedCell.innerHTML.includes(questionIcon)){
+        clickedCell.removeChild(clickedCell.lastElementChild);
+      }
+    
+    }
+  });
 })
 }
 
