@@ -1,5 +1,12 @@
+@font-face {
+  font-family: "digital";
+  src: url("/fonts/digital.ttf") format("truetype");
+}
+
 $cell-color-light: antiquewhite;
 $cell-color-dark: #d0d0d0;
+$cell-color-border: black;
+$panel-color-font: red;
 $cell-size: 30px;
 
 * {
@@ -21,7 +28,7 @@ body {
   align-items: center;
   width: $cell-size;
   height: $cell-size;
-  border: 1px solid black;
+  border: 1px solid $cell-color-border;
   background-color: $cell-color-light;
 }
 
@@ -48,7 +55,7 @@ body {
 
 .hidden {
   font-size: 0;
-  border: 1px solid black;
+  border: 1px solid $cell-color-border;
   border-radius: 2px;
   background: linear-gradient(-45deg, $cell-color-light, $cell-color-dark);
 }
@@ -59,15 +66,20 @@ body {
   justify-content: space-between;
   align-items: center;
   height: 60px;
-  background-color: black;
-  color: red;
-  font-size: 30px;
+  background-color: $cell-color-border;
+  color: $panel-color-font;
+  font-size: 34px;
+}
+
+.timer,
+.counter {
+  font-family: "digital";
 }
 
 .timer,
 .face,
 .counter {
-  width: 60px;
+  width: 80px;
   text-align: center;
   padding: 0 10px;
 }
