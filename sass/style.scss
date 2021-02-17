@@ -3,14 +3,15 @@
   src: url("/fonts/digital.ttf") format("truetype");
 }
 
-$cell-color-light: antiquewhite;
-$cell-color-dark: #d0d0d0;
+$cell-color-light: #d0d0d0;
+$cell-color-dark: #6f6862;
 $cell-color-border: black;
 $panel-color-font: red;
 $btn-color-border: #434039;
 $btn-color-light: #dad0b2;
 $btn-color-dark: #bcb296;
 $btn-color-text-shadow: white;
+$container-color-bcg: #f0f0f0;
 $cell-size: 30px;
 
 * {
@@ -58,7 +59,6 @@ body {
   align-items: center;
   width: $cell-size;
   height: $cell-size;
-  border: 1px solid $cell-color-border;
   background-color: $cell-color-light;
 }
 
@@ -66,6 +66,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   width: 300px;
+  background-color: $container-color-bcg;
 }
 
 .disabled {
@@ -81,13 +82,16 @@ body {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  border: 1px solid $cell-color-border;
+  border-radius: 2px;
+  box-shadow: 2px 2px 0px 0px $cell-color-border;
 }
 
 .hidden {
   font-size: 0;
   border: 1px solid $cell-color-border;
   border-radius: 2px;
-  background: linear-gradient(-45deg, $cell-color-light, $cell-color-dark);
+  background: linear-gradient(-45deg, $cell-color-dark, $cell-color-light);
 }
 
 .panel {

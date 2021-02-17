@@ -51,8 +51,7 @@ body {
       align-items: center;
   width: 30px;
   height: 30px;
-  border: 1px solid black;
-  background-color: antiquewhite;
+  background-color: #d0d0d0;
 }
 
 .container {
@@ -61,6 +60,7 @@ body {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   width: 300px;
+  background-color: #f0f0f0;
 }
 
 .disabled {
@@ -79,13 +79,16 @@ body {
       flex-direction: column;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  border: 1px solid black;
+  border-radius: 2px;
+  box-shadow: 2px 2px 0px 0px black;
 }
 
 .hidden {
   font-size: 0;
   border: 1px solid black;
   border-radius: 2px;
-  background: linear-gradient(-45deg, antiquewhite, #d0d0d0);
+  background: linear-gradient(-45deg, #6f6862, #d0d0d0);
 }
 
 .panel {
