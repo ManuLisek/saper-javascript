@@ -55,4 +55,9 @@ body {
   border-radius: 2px;
   background: linear-gradient(-45deg, antiquewhite, #d0d0d0);
 }
+
+.fa-flag,
+.fa-question {
+  font-size: 14px;
+}
 /*# sourceMappingURL=style.css.map */

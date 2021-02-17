@@ -7,9 +7,9 @@ const bombIcon = '<i class="fas fa-bomb"></i>';
 const flagIcon = '<i class="fas fa-flag"></i>';
 const questionIcon = '<i class="fas fa-question"></i>';
 let bombsArray = [];
-let amountOfBombs = 12;
-let cellsInRow = 12;
-let cellSize = 26;
+let amountOfBombs = 6;
+let cellsInRow = 8;
+let cellSize = 30;
 
 function createGameboard(){
   const size = cellSize * cellsInRow
