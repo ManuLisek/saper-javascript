@@ -40,6 +40,11 @@ body {
   pointer-events: none;
 }
 
+.fa-flag,
+.fa-question {
+  font-size: 14px;
+}
+
 .game {
   display: -ms-flexbox;
   display: flex;
@@ -56,8 +61,26 @@ body {
   background: linear-gradient(-45deg, antiquewhite, #d0d0d0);
 }
 
-.fa-flag,
-.fa-question {
-  font-size: 14px;
+.panel {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  -ms-flex-align: center;
+      align-items: center;
+  height: 60px;
+  background-color: black;
+  color: red;
+  font-size: 30px;
+}
+
+.timer,
+.face,
+.counter {
+  width: 60px;
+  text-align: center;
+  padding: 0 10px;
 }
 /*# sourceMappingURL=style.css.map */
