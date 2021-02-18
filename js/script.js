@@ -109,6 +109,7 @@ function setBombs(){
 btnStart.addEventListener('click', function startGame(){
   btnStart.disabled = true;
   container.classList.remove('disabled');
+  btnStart.classList.add('inactive');
   setBombs();
   handleListeners();
 });
@@ -121,7 +122,11 @@ btnEasy.addEventListener('click', function makeEasy(){
   cellsInRow = 8;
   amountOfBombs = 6;
   container.classList.add('disabled');
+  btnDifficult.classList.remove('active');
+  btnEasy.classList.add('active');
+  btnStart.classList.remove('inactive');
   createGameboard();
+  
 })
 
 btnDifficult.addEventListener('click', function makeDifficult(){
@@ -132,6 +137,9 @@ btnDifficult.addEventListener('click', function makeDifficult(){
   cellsInRow = 11;
   amountOfBombs = 12;
   container.classList.add('disabled');
+  btnDifficult.classList.add('active');
+  btnEasy.classList.remove('active');
+  btnStart.classList.remove('inactive');
   createGameboard();
 })
 

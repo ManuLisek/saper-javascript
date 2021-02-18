@@ -37,6 +37,21 @@ body {
   outline: none;
 }
 
+.btn.active {
+  border-color: #7e4a35;
+  color: #7e4a35;
+}
+
+.btn:active {
+  box-shadow: 1px 1px 0px 0px #434039;
+  transform: translate(2px, 2px);
+}
+
+.btn.inactive {
+  color: #939089;
+  pointer-events: none;
+}
+
 .button-container {
   position: absolute;
   top: 40px;

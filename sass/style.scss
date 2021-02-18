@@ -46,6 +46,18 @@ body {
   padding: 10px 16px;
   text-shadow: 0px 1px 0px $btn-color-text-shadow;
   outline: none;
+  &.active {
+    border-color: #7e4a35;
+    color: #7e4a35;
+  }
+  &:active {
+    box-shadow: 1px 1px 0px 0px #434039;
+    transform: translate(2px, 2px);
+  }
+  &.inactive {
+    color: #939089;
+    pointer-events: none;
+  }
 }
 
 .button-container {
