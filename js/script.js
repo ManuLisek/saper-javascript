@@ -139,6 +139,10 @@ btnEasy.addEventListener('click', function makeEasy(){
   btnDifficult.classList.remove('active');
   btnEasy.classList.add('active');
   btnStart.classList.remove('inactive');
+  seconds = 0;
+  minutes = 0;
+  clearInterval(idInterval);
+  timer.textContent = '0:00';
   createGameboard();
   
 })
@@ -154,6 +158,10 @@ btnDifficult.addEventListener('click', function makeDifficult(){
   btnDifficult.classList.add('active');
   btnEasy.classList.remove('active');
   btnStart.classList.remove('inactive');
+  seconds = 0;
+  minutes = 0;
+  clearInterval(idInterval);
+  timer.textContent = '0:00';
   createGameboard();
 })
 
@@ -173,6 +181,7 @@ cells.forEach(cell => {
      }
      clickedCell.style.color = 'red';
      container.classList.add('disabled');
+     clearInterval(idInterval);
    }
   })
 
