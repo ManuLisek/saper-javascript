@@ -3,6 +3,7 @@ const btnStart = document.querySelector('.start');
 const btnEasy = document.querySelector('.easy');
 const btnDifficult = document.querySelector('.difficult');
 const container = document.querySelector('.container');
+const timer = document.querySelector('.timer');
 const bombIcon = '<i class="fas fa-bomb"></i>';
 const flagIcon = '<i class="fas fa-flag"></i>';
 const questionIcon = '<i class="fas fa-question"></i>';
@@ -10,6 +11,9 @@ let bombsArray = [];
 let amountOfBombs = 6;
 let cellsInRow = 8;
 let cellSize = 30;
+let seconds = 0;
+let minutes = 0;
+let idInterval;
 
 function createGameboard(){
   const size = cellSize * cellsInRow
@@ -110,6 +114,16 @@ btnStart.addEventListener('click', function startGame(){
   btnStart.disabled = true;
   container.classList.remove('disabled');
   btnStart.classList.add('inactive');
+  idInterval = setInterval(function startTimer(){
+  seconds++;
+
+  if(seconds > 59){
+    seconds = 0;
+    minutes++;
+  }
+  seconds = seconds < 10 ? `0${seconds}` : seconds;
+  timer.textContent = `${minutes}:${seconds}`;
+}, 1000)
   setBombs();
   handleListeners();
 });
