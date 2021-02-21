@@ -12,7 +12,7 @@ let amountOfBombs = 6;
 let cellsInRow = 8;
 let cellSize = 30;
 let seconds = 0;
-let minutes = 0;
+let minutes = 5;
 let idInterval;
 
 function createGameboard(){
@@ -114,16 +114,20 @@ btnStart.addEventListener('click', function startGame(){
   btnStart.disabled = true;
   container.classList.remove('disabled');
   btnStart.classList.add('inactive');
-  idInterval = setInterval(function startTimer(){
-  seconds++;
+  idInterval = setInterval(function start(){
+    seconds--;
 
-  if(seconds > 59){
-    seconds = 0;
-    minutes++;
-  }
-  seconds = seconds < 10 ? `0${seconds}` : seconds;
-  timer.textContent = `${minutes}:${seconds}`;
-}, 1000)
+    if(seconds < 0){
+      seconds = 59;
+      minutes--;
+    }
+    seconds = seconds < 10 ? `0${seconds}` : seconds;
+    timer.textContent = `${minutes}:${seconds}`;
+
+    if(seconds === '00' && minutes === 0){
+      clearInterval(idInterval);
+    }
+  }, 1000);
   setBombs();
   handleListeners();
 });
@@ -140,7 +144,7 @@ btnEasy.addEventListener('click', function makeEasy(){
   btnEasy.classList.add('active');
   btnStart.classList.remove('inactive');
   seconds = 0;
-  minutes = 0;
+  minutes = 5;
   clearInterval(idInterval);
   timer.textContent = '0:00';
   createGameboard();
@@ -159,7 +163,7 @@ btnDifficult.addEventListener('click', function makeDifficult(){
   btnEasy.classList.remove('active');
   btnStart.classList.remove('inactive');
   seconds = 0;
-  minutes = 0;
+  minutes = 5;
   clearInterval(idInterval);
   timer.textContent = '0:00';
   createGameboard();
