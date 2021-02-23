@@ -13,6 +13,7 @@ $btn-color-dark: #bcb296;
 $btn-color-text-shadow: white;
 $container-color-bcg: #f0f0f0;
 $cell-size: 30px;
+$meh-face-color: orange;
 
 * {
   margin: 0;
@@ -115,6 +116,9 @@ body {
   background-color: $cell-color-border;
   color: $panel-color-font;
   font-size: 34px;
+  .face {
+    color: $meh-face-color;
+  }
 }
 
 .timer,

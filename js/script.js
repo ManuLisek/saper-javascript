@@ -4,9 +4,13 @@ const btnEasy = document.querySelector('.easy');
 const btnDifficult = document.querySelector('.difficult');
 const container = document.querySelector('.container');
 const timer = document.querySelector('.timer');
+const face = document.querySelector('.face');
 const bombIcon = '<i class="fas fa-bomb"></i>';
 const flagIcon = '<i class="fas fa-flag"></i>';
 const questionIcon = '<i class="fas fa-question"></i>';
+const mehFace = '<i class="far fa-meh"></i>';
+const surpriseFace = '<i class="far fa-surprise"></i>';
+const dizzyFace = '<i class="far fa-dizzy"></i>';
 let bombsArray = [];
 let amountOfBombs = 6;
 let cellsInRow = 8;
@@ -109,6 +113,14 @@ function setBombs(){
 }
 
 
+function endGame(){
+  face.innerHTML = dizzyFace;
+  face.style.color = 'red';
+  clearInterval(idInterval);
+  container.classList.add('disabled');
+}
+
+
 
 btnStart.addEventListener('click', function startGame(){
   btnStart.disabled = true;
@@ -125,7 +137,7 @@ btnStart.addEventListener('click', function startGame(){
     timer.textContent = `${minutes}:${seconds}`;
 
     if(seconds === '00' && minutes === 0){
-      clearInterval(idInterval);
+      endGame();
     }
   }, 1000);
   setBombs();
@@ -184,8 +196,7 @@ cells.forEach(cell => {
        bomb.innerHTML = bombIcon;
      }
      clickedCell.style.color = 'red';
-     container.classList.add('disabled');
-     clearInterval(idInterval);
+     endGame();
    }
   })
 

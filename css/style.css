@@ -121,6 +121,10 @@ body {
   font-size: 34px;
 }
 
+.panel .face {
+  color: orange;
+}
+
 .timer,
 .counter {
   font-family: "digital";
