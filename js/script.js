@@ -16,7 +16,7 @@ let amountOfBombs = 6;
 let cellsInRow = 8;
 let cellSize = 30;
 let seconds = 0;
-let minutes = 5;
+let minutes = 1;
 let idInterval;
 
 function createGameboard(){
@@ -114,6 +114,11 @@ function setBombs(){
 
 
 function endGame(){
+  for(let bomb of bombsArray){
+    bomb.classList.remove('hidden');
+    bomb.removeChild(bomb.lastElementChild);
+    bomb.innerHTML = bombIcon;
+  }
   face.innerHTML = dizzyFace;
   face.style.color = 'red';
   clearInterval(idInterval);
@@ -190,11 +195,6 @@ cells.forEach(cell => {
    const clickedCell = this;
    clickedCell.classList.remove('hidden');
    if(clickedCell.innerHTML === bombIcon){
-     for(let bomb of bombsArray){
-       bomb.classList.remove('hidden');
-       bomb.removeChild(bomb.lastElementChild);
-       bomb.innerHTML = bombIcon;
-     }
      clickedCell.style.color = 'red';
      endGame();
    }
