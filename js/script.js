@@ -16,7 +16,7 @@ let amountOfBombs = 6;
 let cellsInRow = 8;
 let cellSize = 30;
 let seconds = 0;
-let minutes = 1;
+let minutes = 5;
 let idInterval;
 
 function createGameboard(){
@@ -125,6 +125,23 @@ function endGame(){
   container.classList.add('disabled');
 }
 
+function clearGameboard(){
+  bombsArray = [];
+  container.textContent = "";
+  btnStart.disabled = false;
+  container.classList.add('disabled');
+  btnDifficult.classList.remove('active');
+  btnEasy.classList.add('active');
+  btnStart.classList.remove('inactive');
+  face.innerHTML = mehFace;
+  face.style.color = 'orange';
+  seconds = 0;
+  minutes = 5;
+  clearInterval(idInterval);
+  timer.textContent = '5:00';
+  createGameboard();
+}
+
 
 
 btnStart.addEventListener('click', function startGame(){
@@ -150,40 +167,17 @@ btnStart.addEventListener('click', function startGame(){
 });
 
 btnEasy.addEventListener('click', function makeEasy(){
-  container.textContent = "";
-  btnStart.disabled = false;
-  bombsArray = [];
   cellSize = 30
   cellsInRow = 8;
   amountOfBombs = 6;
-  container.classList.add('disabled');
-  btnDifficult.classList.remove('active');
-  btnEasy.classList.add('active');
-  btnStart.classList.remove('inactive');
-  seconds = 0;
-  minutes = 5;
-  clearInterval(idInterval);
-  timer.textContent = '0:00';
-  createGameboard();
-  
+  clearGameboard();
 })
 
 btnDifficult.addEventListener('click', function makeDifficult(){
-  container.textContent = "";
-  btnStart.disabled = false;
-  bombsArray = [];
   cellSize = 26
   cellsInRow = 11;
   amountOfBombs = 12;
-  container.classList.add('disabled');
-  btnDifficult.classList.add('active');
-  btnEasy.classList.remove('active');
-  btnStart.classList.remove('inactive');
-  seconds = 0;
-  minutes = 5;
-  clearInterval(idInterval);
-  timer.textContent = '0:00';
-  createGameboard();
+  clearGameboard();
 })
 
 
