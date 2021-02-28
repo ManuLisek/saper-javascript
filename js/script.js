@@ -198,7 +198,7 @@ cells.forEach(cell => {
    clickedCell.classList.remove('hidden');
    if(clickedCell.innerHTML === bombIcon){
      clickedCell.style.color = 'red';
-     endGame();
+     //endGame();
    }
   })
 
@@ -222,7 +222,22 @@ cells.forEach(cell => {
       else if(clickedCell.innerHTML.includes(questionIcon)){
         clickedCell.removeChild(clickedCell.lastElementChild);
       }
-    
+    }
+  });
+
+  cell.addEventListener('mousedown', function handleSurpriseFace(e){
+    const clickedCell = this;
+    if(e.button == 0 && clickedCell.classList.contains('hidden') && !clickedCell.innerHTML.includes(flagIcon) && !clickedCell.innerHTML.includes(questionIcon)){
+      face.innerHTML = surpriseFace;
+    }
+  });
+
+  cell.addEventListener('mouseup', function handleReactionFace(e){
+    const clickedCell = this;
+    if(clickedCell.innerHTML === bombIcon && e.button == 0){
+      endGame();
+    } else {
+      face.innerHTML = mehFace;
     }
   });
 })
