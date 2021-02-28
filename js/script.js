@@ -133,8 +133,6 @@ function clearGameboard(){
   cellsContainer.textContent = "";
   btnStart.disabled = false;
   cellsContainer.classList.add('disabled');
-  btnDifficult.classList.remove('active');
-  btnEasy.classList.add('active');
   btnStart.classList.remove('inactive');
   face.innerHTML = mehFace;
   face.style.color = 'orange';
@@ -176,6 +174,8 @@ btnEasy.addEventListener('click', function makeEasy(){
   cellSize = 30
   cellsInRow = 8;
   amountOfBombs = 6;
+  btnDifficult.classList.remove('active');
+  btnEasy.classList.add('active');
   clearGameboard();
 })
 
@@ -183,6 +183,8 @@ btnDifficult.addEventListener('click', function makeDifficult(){
   cellSize = 26
   cellsInRow = 11;
   amountOfBombs = 12;
+  btnDifficult.classList.add('active');
+  btnEasy.classList.remove('active');
   clearGameboard();
 })
 
