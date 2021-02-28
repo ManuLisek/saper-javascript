@@ -2,9 +2,10 @@
 const btnStart = document.querySelector('.start');
 const btnEasy = document.querySelector('.easy');
 const btnDifficult = document.querySelector('.difficult');
-const container = document.querySelector('.container');
+const cellsContainer = document.querySelector('.container');
 const timer = document.querySelector('.timer');
 const face = document.querySelector('.face');
+const counterContainer = document.querySelector('.counter');
 const bombIcon = '<i class="fas fa-bomb"></i>';
 const flagIcon = '<i class="fas fa-flag"></i>';
 const questionIcon = '<i class="fas fa-question"></i>';
@@ -18,16 +19,18 @@ let cellSize = 30;
 let seconds = 0;
 let minutes = 5;
 let idInterval;
+let counter = amountOfBombs;
+
 
 function createGameboard(){
   const size = cellSize * cellsInRow
-  container.setAttribute('style', `width:${size}px; height:${size}px;`)
+  cellsContainer.setAttribute('style', `width:${size}px; height:${size}px;`)
 
   for(let i = 0; i < cellsInRow * cellsInRow; i++){
     const cell = document.createElement('div');
     cell.className = 'cell hidden';
     cell.setAttribute('style', `width:${cellSize}px; height:${cellSize}px;`)
-    container.appendChild(cell);
+    cellsContainer.appendChild(cell);
     }
 }
 
@@ -122,14 +125,14 @@ function endGame(){
   face.innerHTML = dizzyFace;
   face.style.color = 'red';
   clearInterval(idInterval);
-  container.classList.add('disabled');
+  cellsContainer.classList.add('disabled');
 }
 
 function clearGameboard(){
   bombsArray = [];
-  container.textContent = "";
+  cellsContainer.textContent = "";
   btnStart.disabled = false;
-  container.classList.add('disabled');
+  cellsContainer.classList.add('disabled');
   btnDifficult.classList.remove('active');
   btnEasy.classList.add('active');
   btnStart.classList.remove('inactive');
@@ -137,8 +140,11 @@ function clearGameboard(){
   face.style.color = 'orange';
   seconds = 0;
   minutes = 5;
-  clearInterval(idInterval);
+  // console.log(counter);
+  let counter = amountOfBombs;
+  counterContainer.textContent = counter;
   timer.textContent = '5:00';
+  clearInterval(idInterval);
   createGameboard();
 }
 
@@ -146,7 +152,7 @@ function clearGameboard(){
 
 btnStart.addEventListener('click', function startGame(){
   btnStart.disabled = true;
-  container.classList.remove('disabled');
+  cellsContainer.classList.remove('disabled');
   btnStart.classList.add('inactive');
   idInterval = setInterval(function start(){
     seconds--;
@@ -200,12 +206,16 @@ cells.forEach(cell => {
   
     if(e.button == 2 && clickedCell.classList.contains('hidden')){
    
-      if(!clickedCell.innerHTML.includes(flagIcon) && !clickedCell.innerHTML.includes(questionIcon)){
+      if(!clickedCell.innerHTML.includes(flagIcon) && !clickedCell.innerHTML.includes(questionIcon) && counter > 0){
         clickedCell.innerHTML += flagIcon;
+        counter--;
+        counterContainer.textContent = counter;
       }
       else if(clickedCell.innerHTML.includes(flagIcon) ){
         clickedCell.removeChild(clickedCell.lastElementChild);
         clickedCell.innerHTML += questionIcon;
+        counter++;
+        counterContainer.textContent = counter;
       }
       else if(clickedCell.innerHTML.includes(questionIcon)){
         clickedCell.removeChild(clickedCell.lastElementChild);
