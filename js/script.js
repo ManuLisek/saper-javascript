@@ -139,7 +139,7 @@ function clearGameboard(){
   seconds = 0;
   minutes = 5;
   // console.log(counter);
-  let counter = amountOfBombs;
+  counter = amountOfBombs;
   counterContainer.textContent = counter;
   timer.textContent = '5:00';
   clearInterval(idInterval);
@@ -207,6 +207,7 @@ cells.forEach(cell => {
     e.preventDefault();
   
     if(e.button == 2 && clickedCell.classList.contains('hidden')){
+      console.log(counter)
    
       if(!clickedCell.innerHTML.includes(flagIcon) && !clickedCell.innerHTML.includes(questionIcon) && counter > 0){
         clickedCell.innerHTML += flagIcon;
