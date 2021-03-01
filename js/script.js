@@ -12,6 +12,7 @@ const questionIcon = '<i class="fas fa-question"></i>';
 const mehFace = '<i class="far fa-meh"></i>';
 const surpriseFace = '<i class="far fa-surprise"></i>';
 const dizzyFace = '<i class="far fa-dizzy"></i>';
+const sweatyFace = '<i class="far fa-grin-beam-sweat"></i>';
 let bombsArray = [];
 let amountOfBombs = 6;
 let cellsInRow = 8;
@@ -19,6 +20,7 @@ let cellSize = 30;
 let seconds = 0;
 let minutes = 5;
 let idInterval;
+let indexesOfBombs;
 let counter = amountOfBombs;
 
 
@@ -48,7 +50,7 @@ function setBombs(){
   }
 
   bombsArray.forEach(bomb => bomb.innerHTML = bombIcon);
-  const indexesOfBombs = [...cells].map((e, i) => e.innerHTML !== '' ? i : '').filter(Number.isFinite);
+  indexesOfBombs = [...cells].map((e, i) => e.innerHTML !== '' ? i : '').filter(Number.isFinite);
   indexesOfBombs.map(indexOfBomb => {
 
     const right = cells[indexOfBomb + 1];
@@ -146,6 +148,13 @@ function clearGameboard(){
   createGameboard();
 }
 
+function winGame(){
+  face.innerHTML = sweatyFace;
+  face.style.color = 'limegreen';
+  clearInterval(idInterval);
+  cellsContainer.classList.add('disabled');
+}
+
 
 
 btnStart.addEventListener('click', function startGame(){
@@ -223,6 +232,26 @@ cells.forEach(cell => {
       else if(clickedCell.innerHTML.includes(questionIcon)){
         clickedCell.removeChild(clickedCell.lastElementChild);
       }
+    }
+
+    if(counter === 0){
+      const indexesOfFlags = [...cells].map((e, i) => e.innerHTML.includes(flagIcon) ? i : '').filter(Number.isFinite);
+      //console.log(indexesOfFlags);
+      //console.log(indexesOfBombs);
+      const result = [];
+      indexesOfFlags.forEach(indexOfFlag => {
+        if(indexesOfBombs.includes(indexOfFlag)){
+          result.push(indexOfFlag);
+        }
+      
+      });
+      //console.log(result);
+      if(result.length === amountOfBombs){
+        winGame();
+      } 
+    // else{
+    //   endGame();
+    // }
     }
   });
 
