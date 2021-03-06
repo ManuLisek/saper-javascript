@@ -22,6 +22,8 @@ let minutes = 5;
 let idInterval;
 let indexesOfBombs;
 let counter = amountOfBombs;
+let cellsToCheck;
+let cells;
 
 
 function createGameboard(){
@@ -40,7 +42,7 @@ createGameboard();
 
 
 function setBombs(){
-  const cells = document.querySelectorAll('.cell');
+  cells = document.querySelectorAll('.cell');
 
   while(bombsArray.length < amountOfBombs){
     const r = Math.floor(Math.random() * cells.length);
@@ -155,6 +157,77 @@ function winGame(){
   cellsContainer.classList.add('disabled');
 }
 
+function checkAroundClickedIndex(clickedIndex){
+        
+  const right = clickedIndex + 1;
+  const left = clickedIndex - 1;
+  const up = clickedIndex - cellsInRow;
+  const down = clickedIndex + cellsInRow;
+  const downRight = clickedIndex + cellsInRow + 1;
+  const downLeft = clickedIndex + cellsInRow - 1;
+  const upLeft = clickedIndex - cellsInRow - 1;
+  const upRight = clickedIndex - cellsInRow + 1;
+
+
+  if(right % cellsInRow !== 0 && !cells[right].innerHTML.includes('fas')) {
+    cells[right].classList.remove('hidden');
+    if(cells[right].innerHTML === '' && !cellsToCheck.includes(right)){
+      cellsToCheck.push(right);
+      checkAroundClickedIndex(right);
+    }
+  }
+  if((clickedIndex % cellsInRow !== 0 && !cells[left].innerHTML.includes('fas'))){
+    cells[left].classList.remove('hidden');
+    if(cells[left].innerHTML === '' && !cellsToCheck.includes(left)){
+      cellsToCheck.push(left);
+      checkAroundClickedIndex(left);
+    }
+  }
+  if(down < cells.length && !cells[down].innerHTML.includes('fas')){
+    cells[down].classList.remove('hidden');
+    if(cells[down].innerHTML === '' && !cellsToCheck.includes(down)){
+      cellsToCheck.push(down);
+      checkAroundClickedIndex(down);
+    }
+  }
+  if(up >= 0 && !cells[up].innerHTML.includes('fas')){
+    cells[up].classList.remove('hidden');
+    if(cells[up].innerHTML === '' && !cellsToCheck.includes(up)){
+      cellsToCheck.push(up);
+      checkAroundClickedIndex(up);
+    }
+  }
+  if(right % cellsInRow !== 0 && down < cells.length && !cells[downRight].innerHTML.includes('fas')){
+    cells[downRight].classList.remove('hidden');
+    if(cells[downRight].innerHTML === '' && !cellsToCheck.includes(downRight)){
+      cellsToCheck.push(downRight);
+      checkAroundClickedIndex(downRight);
+    }
+  }
+  if(clickedIndex % cellsInRow !== 0 && down < cells.length && !cells[downLeft].innerHTML.includes('fas')){
+    cells[downLeft].classList.remove('hidden');
+    if(cells[downLeft].innerHTML === '' && !cellsToCheck.includes(downLeft)){
+      cellsToCheck.push(downLeft);
+      checkAroundClickedIndex(downLeft);
+    }
+  }
+  if(clickedIndex % cellsInRow !== 0 && up >= 0 && !cells[upLeft].innerHTML.includes('fas')){
+    cells[upLeft].classList.remove('hidden');
+    if(cells[upLeft].innerHTML === '' && !cellsToCheck.includes(upLeft)){
+      cellsToCheck.push(upLeft);
+      checkAroundClickedIndex(upLeft);
+    }
+  }
+  if(right % cellsInRow !== 0 && up >= 0 && !cells[upRight].innerHTML.includes('fas')){
+    cells[upRight].classList.remove('hidden');
+    if(cells[upRight].innerHTML === '' && !cellsToCheck.includes(upRight)){
+      cellsToCheck.push(upRight);
+      checkAroundClickedIndex(upRight);
+    }
+  }
+//console.log(cellsToCheck)
+}
+
 
 
 btnStart.addEventListener('click', function startGame(){
@@ -199,16 +272,32 @@ btnDifficult.addEventListener('click', function makeDifficult(){
 
 
 function handleListeners(){
-const cells = document.querySelectorAll('.cell');
+cells = document.querySelectorAll('.cell');
 
 cells.forEach(cell => {
   cell.addEventListener('click', function handleShowCell(){
-   const clickedCell = this;
-   clickedCell.classList.remove('hidden');
-   if(clickedCell.innerHTML === bombIcon){
-     clickedCell.style.color = 'red';
-     //endGame();
-   }
+    const clickedCell = this;
+
+    if(!clickedCell.innerHTML.includes(flagIcon) && !clickedCell.innerHTML.includes(questionIcon)){
+      clickedCell.classList.remove('hidden');
+    }
+    
+    if(clickedCell.innerHTML === ''){
+      cells = [...cells];
+      let clickedIndex = cells.indexOf(clickedCell);
+      cellsToCheck = [];
+      console.log('diala');
+      checkAroundClickedIndex(clickedIndex);
+    }
+    else if(clickedCell.innerHTML.includes(flagIcon)){
+      return;
+    }
+    else if(clickedCell.innerHTML.includes(questionIcon)){
+      return;
+    }
+    else if(clickedCell.innerHTML.includes(bombIcon)){
+      clickedCell.style.color = 'red';
+    }
   })
 
   cell.addEventListener('contextmenu', function handleFlag(e){
