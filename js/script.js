@@ -25,11 +25,9 @@ let counter = amountOfBombs;
 let cellsToCheck;
 let cells;
 
-
 function createGameboard(){
   const size = cellSize * cellsInRow
   cellsContainer.setAttribute('style', `width:${size}px; height:${size}px;`)
-
   for(let i = 0; i < cellsInRow * cellsInRow; i++){
     const cell = document.createElement('div');
     cell.className = 'cell hidden';
@@ -37,24 +35,20 @@ function createGameboard(){
     cellsContainer.appendChild(cell);
     }
 }
-
 createGameboard();
 
 
 function setBombs(){
   cells = document.querySelectorAll('.cell');
-
   while(bombsArray.length < amountOfBombs){
     const r = Math.floor(Math.random() * cells.length);
     if(!bombsArray.includes(cells[r])){
       bombsArray.push(cells[r]);
     }
   }
-
   bombsArray.forEach(bomb => bomb.innerHTML = bombIcon);
   indexesOfBombs = [...cells].map((e, i) => e.innerHTML !== '' ? i : '').filter(Number.isFinite);
   indexesOfBombs.map(indexOfBomb => {
-
     const right = cells[indexOfBomb + 1];
     const left = cells[indexOfBomb - 1];
     const up = cells[indexOfBomb - cellsInRow];
@@ -67,50 +61,41 @@ function setBombs(){
     const leftCondition = indexOfBomb % cellsInRow !== 0;
     const upCondition = indexOfBomb - cellsInRow >= 0;
     const downCondition = indexOfBomb + cellsInRow < cells.length;
-    
-    //right
     if(rightCondition && right.innerHTML !== bombIcon){
       let sum = Number(right.textContent);
       sum += 1;
       right.textContent = sum;
     }
-    //left
     if(leftCondition && left.innerHTML !== bombIcon){
       let sum = Number(left.textContent);
       sum += 1;
       left.textContent = sum;
     }
-    //up
     if(upCondition && up.innerHTML !== bombIcon){
       let sum = Number(up.textContent);
       sum += 1;
       up.textContent = sum;
     }
-    //down*
     if(downCondition && down.innerHTML !== bombIcon){
       let sum = Number(down.textContent);
       sum += 1;
       down.textContent = sum;
     }
-    //up left
     if(leftCondition && upCondition && upLeft.innerHTML !== bombIcon){
       let sum = Number(upLeft.textContent);
       sum += 1;
       upLeft.textContent = sum;
     }
-    //up right
     if(rightCondition && upCondition && upRight.innerHTML !== bombIcon){
       let sum = Number(upRight.textContent);
       sum += 1;
       upRight.textContent = sum;
     }
-    //down left*
     if(leftCondition && downCondition && downLeft.innerHTML !== bombIcon){
       let sum = Number(downLeft.textContent);
       sum += 1;
       downLeft.textContent = sum;
     }
-    //down right
     if(rightCondition && downCondition && downRight.innerHTML !== bombIcon){
       let sum = Number(downRight.textContent);
       sum += 1;
@@ -118,7 +103,6 @@ function setBombs(){
     }
   })
 }
-
 
 function endGame(){
   for(let bomb of bombsArray){
@@ -142,7 +126,6 @@ function clearGameboard(){
   face.style.color = 'orange';
   seconds = 0;
   minutes = 5;
-  // console.log(counter);
   counter = amountOfBombs;
   counterContainer.textContent = counter;
   timer.textContent = '5:00';
@@ -158,7 +141,6 @@ function winGame(){
 }
 
 function checkAroundClickedIndex(clickedIndex){
-        
   const right = clickedIndex + 1;
   const left = clickedIndex - 1;
   const up = clickedIndex - cellsInRow;
@@ -167,8 +149,6 @@ function checkAroundClickedIndex(clickedIndex){
   const downLeft = clickedIndex + cellsInRow - 1;
   const upLeft = clickedIndex - cellsInRow - 1;
   const upRight = clickedIndex - cellsInRow + 1;
-
-
   if(right % cellsInRow !== 0 && !cells[right].innerHTML.includes('fas')) {
     cells[right].classList.remove('hidden');
     if(cells[right].innerHTML === '' && !cellsToCheck.includes(right)){
@@ -225,140 +205,131 @@ function checkAroundClickedIndex(clickedIndex){
       checkAroundClickedIndex(upRight);
     }
   }
-//console.log(cellsToCheck)
 }
 
-
-
-btnStart.addEventListener('click', function startGame(){
+function startGame(){
   btnStart.disabled = true;
   cellsContainer.classList.remove('disabled');
   btnStart.classList.add('inactive');
   idInterval = setInterval(function start(){
     seconds--;
-
     if(seconds < 0){
       seconds = 59;
       minutes--;
     }
     seconds = seconds < 10 ? `0${seconds}` : seconds;
     timer.textContent = `${minutes}:${seconds}`;
-
     if(seconds === '00' && minutes === 0){
       endGame();
     }
   }, 1000);
   setBombs();
   handleListeners();
-});
+}
 
-btnEasy.addEventListener('click', function makeEasy(){
+function makeEasy(){
   cellSize = 30
   cellsInRow = 8;
   amountOfBombs = 6;
   btnDifficult.classList.remove('active');
   btnEasy.classList.add('active');
   clearGameboard();
-})
+}
 
-btnDifficult.addEventListener('click', function makeDifficult(){
+function makeDifficult(){
   cellSize = 26
   cellsInRow = 11;
   amountOfBombs = 12;
   btnDifficult.classList.add('active');
   btnEasy.classList.remove('active');
   clearGameboard();
-})
+}
 
+function handleShowCell(){
+  const clickedCell = this;
+  if(!clickedCell.innerHTML.includes(flagIcon) && !clickedCell.innerHTML.includes(questionIcon)){
+    clickedCell.classList.remove('hidden');
+  }
+  if(clickedCell.innerHTML === ''){
+    cells = [...cells];
+    let clickedIndex = cells.indexOf(clickedCell);
+    cellsToCheck = [];
+    checkAroundClickedIndex(clickedIndex);
+  }
+  else if(clickedCell.innerHTML.includes(flagIcon)){
+    return;
+  }
+  else if(clickedCell.innerHTML.includes(questionIcon)){
+    return;
+  }
+  else if(clickedCell.innerHTML.includes(bombIcon)){
+    clickedCell.style.color = 'red';
+  }
+}
 
-function handleListeners(){
-cells = document.querySelectorAll('.cell');
-
-cells.forEach(cell => {
-  cell.addEventListener('click', function handleShowCell(){
-    const clickedCell = this;
-
-    if(!clickedCell.innerHTML.includes(flagIcon) && !clickedCell.innerHTML.includes(questionIcon)){
-      clickedCell.classList.remove('hidden');
+function handleFlag(e){
+  const clickedCell = this;
+  e.preventDefault();
+  if(e.button == 2 && clickedCell.classList.contains('hidden')){
+       if(!clickedCell.innerHTML.includes(flagIcon) && !clickedCell.innerHTML.includes(questionIcon) && counter > 0){
+      clickedCell.innerHTML += flagIcon;
+      counter--;
+      counterContainer.textContent = counter;
     }
-    
-    if(clickedCell.innerHTML === ''){
-      cells = [...cells];
-      let clickedIndex = cells.indexOf(clickedCell);
-      cellsToCheck = [];
-      console.log('diala');
-      checkAroundClickedIndex(clickedIndex);
-    }
-    else if(clickedCell.innerHTML.includes(flagIcon)){
-      return;
+    else if(clickedCell.innerHTML.includes(flagIcon) ){
+      clickedCell.removeChild(clickedCell.lastElementChild);
+      clickedCell.innerHTML += questionIcon;
+      counter++;
+      counterContainer.textContent = counter;
     }
     else if(clickedCell.innerHTML.includes(questionIcon)){
-      return;
+      clickedCell.removeChild(clickedCell.lastElementChild);
     }
-    else if(clickedCell.innerHTML.includes(bombIcon)){
-      clickedCell.style.color = 'red';
-    }
-  })
-
-  cell.addEventListener('contextmenu', function handleFlag(e){
-    const clickedCell = this;
-    e.preventDefault();
-  
-    if(e.button == 2 && clickedCell.classList.contains('hidden')){
-      console.log(counter)
-   
-      if(!clickedCell.innerHTML.includes(flagIcon) && !clickedCell.innerHTML.includes(questionIcon) && counter > 0){
-        clickedCell.innerHTML += flagIcon;
-        counter--;
-        counterContainer.textContent = counter;
+  }
+  if(counter === 0){
+    const indexesOfFlags = [...cells].map((e, i) => e.innerHTML.includes(flagIcon) ? i : '').filter(Number.isFinite);
+    const result = [];
+    indexesOfFlags.forEach(indexOfFlag => {
+      if(indexesOfBombs.includes(indexOfFlag)){
+        result.push(indexOfFlag);
       }
-      else if(clickedCell.innerHTML.includes(flagIcon) ){
-        clickedCell.removeChild(clickedCell.lastElementChild);
-        clickedCell.innerHTML += questionIcon;
-        counter++;
-        counterContainer.textContent = counter;
-      }
-      else if(clickedCell.innerHTML.includes(questionIcon)){
-        clickedCell.removeChild(clickedCell.lastElementChild);
-      }
-    }
-
-    if(counter === 0){
-      const indexesOfFlags = [...cells].map((e, i) => e.innerHTML.includes(flagIcon) ? i : '').filter(Number.isFinite);
-      //console.log(indexesOfFlags);
-      //console.log(indexesOfBombs);
-      const result = [];
-      indexesOfFlags.forEach(indexOfFlag => {
-        if(indexesOfBombs.includes(indexOfFlag)){
-          result.push(indexOfFlag);
-        }
-      
-      });
-      //console.log(result);
-      if(result.length === amountOfBombs){
-        winGame();
-      } 
-    // else{
-    //   endGame();
-    // }
-    }
-  });
-
-  cell.addEventListener('mousedown', function handleSurpriseFace(e){
-    const clickedCell = this;
-    if(e.button == 0 && clickedCell.classList.contains('hidden') && !clickedCell.innerHTML.includes(flagIcon) && !clickedCell.innerHTML.includes(questionIcon)){
-      face.innerHTML = surpriseFace;
-    }
-  });
-
-  cell.addEventListener('mouseup', function handleReactionFace(e){
-    const clickedCell = this;
-    if(clickedCell.innerHTML === bombIcon && e.button == 0){
-      endGame();
-    } else {
-      face.innerHTML = mehFace;
-    }
-  });
-})
+    });
+    if(result.length === amountOfBombs){
+      winGame();
+    } 
+  }
 }
+
+function handleSurpriseFace(e){
+  const clickedCell = this;
+  if(e.button == 0 && clickedCell.classList.contains('hidden') && !clickedCell.innerHTML.includes(flagIcon) && !clickedCell.innerHTML.includes(questionIcon)){
+    face.innerHTML = surpriseFace;
+  }
+}
+
+function handleReactionFace(e){
+  const clickedCell = this;
+  if(clickedCell.innerHTML === bombIcon && e.button == 0){
+    endGame();
+  } else {
+    face.innerHTML = mehFace;
+  }
+}
+
+function handleListeners(){
+  cells = document.querySelectorAll('.cell');
+  cells.forEach(cell => {
+    cell.addEventListener('click', handleShowCell);
+    cell.addEventListener('contextmenu', handleFlag);
+    cell.addEventListener('mousedown', handleSurpriseFace);
+    cell.addEventListener('mouseup', handleReactionFace);
+  })
+  }
+
+btnStart.addEventListener('click', startGame);
+btnEasy.addEventListener('click', makeEasy);
+btnDifficult.addEventListener('click', makeDifficult);
+
+
+
 
