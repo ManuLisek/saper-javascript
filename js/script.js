@@ -269,7 +269,7 @@ function handleShowCell(){
 
 function handleFlag(e){
   const clickedCell = this;
-  e.preventDefault();
+  //e.preventDefault();
   if(e.button == 2 && clickedCell.classList.contains('hidden')){
        if(!clickedCell.innerHTML.includes(flagIcon) && !clickedCell.innerHTML.includes(questionIcon) && counter > 0){
       clickedCell.innerHTML += flagIcon;
