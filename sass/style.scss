@@ -1,6 +1,6 @@
 @font-face {
-  font-family: "digital";
-  src: url("/fonts/digital.ttf") format("truetype");
+	font-family: "digital";
+	src: url("/fonts/digital.ttf") format("truetype");
 }
 
 $cell-color-light: #d0d0d0;
@@ -16,134 +16,134 @@ $cell-size: 30px;
 $meh-face-color: orange;
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-image: url(/images/dark_brick_wall.png);
-  height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-image: url(/images/dark_brick_wall.png);
+	height: 100vh;
 }
 
 .btn {
-  box-shadow: 2px 2px 0px 0px $btn-color-border;
-  background: linear-gradient(
-    to bottom,
-    $btn-color-light 5%,
-    $btn-color-dark 100%
-  );
-  border-radius: 15px;
-  border: 2px solid $btn-color-border;
-  cursor: pointer;
-  color: $btn-color-border;
-  font-size: 16px;
-  width: 90px;
-  font-weight: bold;
-  padding: 10px 16px;
-  text-shadow: 0px 1px 0px $btn-color-text-shadow;
-  outline: none;
-  &.active {
-    border-color: #7e4a35;
-    color: #7e4a35;
-  }
-  &:active {
-    box-shadow: 1px 1px 0px 0px #434039;
-    transform: translate(2px, 2px);
-  }
-  &.inactive {
-    color: #939089;
-    pointer-events: none;
-  }
+	box-shadow: 2px 2px 0px 0px $btn-color-border;
+	background: linear-gradient(
+		to bottom,
+		$btn-color-light 5%,
+		$btn-color-dark 100%
+	);
+	border-radius: 15px;
+	border: 2px solid $btn-color-border;
+	cursor: pointer;
+	color: $btn-color-border;
+	font-size: 16px;
+	width: 90px;
+	font-weight: bold;
+	padding: 10px 16px;
+	text-shadow: 0px 1px 0px $btn-color-text-shadow;
+	outline: none;
+	&.active {
+		border-color: #7e4a35;
+		color: #7e4a35;
+	}
+	&:active {
+		box-shadow: 1px 1px 0px 0px #434039;
+		transform: translate(2px, 2px);
+	}
+	&.inactive {
+		color: #939089;
+		pointer-events: none;
+	}
 }
 
 .button-container {
-  position: absolute;
-  top: 40px;
+	position: absolute;
+	top: 40px;
 }
 
 .cell {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: $cell-size;
-  height: $cell-size;
-  background-color: $cell-color-light;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: $cell-size;
+	height: $cell-size;
+	background-color: $cell-color-light;
 }
 
 .container {
-  display: flex;
-  flex-wrap: wrap;
-  width: 300px;
-  background-color: $container-color-bcg;
+	display: flex;
+	flex-wrap: wrap;
+	width: 300px;
+	background-color: $container-color-bcg;
 }
 
 .disabled {
-  pointer-events: none;
+	pointer-events: none;
 }
 
 .fa-flag,
 .fa-question {
-  font-size: 14px;
+	font-size: 14px;
 }
 
 .game {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  border: 1px solid $cell-color-border;
-  border-radius: 2px;
-  box-shadow: 2px 2px 0px 0px $cell-color-border;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	border: 1px solid $cell-color-border;
+	border-radius: 2px;
+	box-shadow: 2px 2px 0px 0px $cell-color-border;
 }
 
 .hidden {
-  font-size: 0;
-  border: 1px solid $cell-color-border;
-  border-radius: 2px;
-  background: linear-gradient(-45deg, $cell-color-dark, $cell-color-light);
+	font-size: 0;
+	border: 1px solid $cell-color-border;
+	border-radius: 2px;
+	background: linear-gradient(-45deg, $cell-color-dark, $cell-color-light);
 }
 
 .panel {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  height: 60px;
-  background-color: $cell-color-border;
-  color: $panel-color-font;
-  font-size: 34px;
-  .face {
-    color: $meh-face-color;
-  }
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	height: 60px;
+	background-color: $cell-color-border;
+	color: $panel-color-font;
+	font-size: 34px;
+	.face {
+		color: $meh-face-color;
+	}
 }
 
 .timer,
 .counter {
-  font-family: "digital";
+	font-family: "digital";
 }
 
 .timer,
 .face,
 .counter {
-  width: 80px;
-  text-align: center;
-  padding: 0 10px;
+	width: 80px;
+	text-align: center;
+	padding: 0 10px;
 }
 
 @media (max-height: 550px) {
-  .button-container {
-    top: 15px;
-    left: 15px;
-  }
+	.button-container {
+		top: 15px;
+		left: 15px;
+	}
 
-  .easy,
-  .difficult,
-  .start {
-    display: block;
-    margin: 10px 0;
-  }
+	.easy,
+	.difficult,
+	.start {
+		display: block;
+		margin: 10px 0;
+	}
 }

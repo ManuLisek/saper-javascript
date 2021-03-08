@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 const btnStart = document.querySelector('.start');
 const btnEasy = document.querySelector('.easy');
 const btnDifficult = document.querySelector('.difficult');
@@ -26,14 +26,14 @@ let cellsToCheck;
 let cells;
 
 function createGameboard(){
-  const size = cellSize * cellsInRow
-  cellsContainer.setAttribute('style', `width:${size}px; height:${size}px;`)
+  const size = cellSize * cellsInRow;
+  cellsContainer.setAttribute('style', `width:${size}px; height:${size}px;`);
   for(let i = 0; i < cellsInRow * cellsInRow; i++){
     const cell = document.createElement('div');
     cell.className = 'cell hidden';
-    cell.setAttribute('style', `width:${cellSize}px; height:${cellSize}px;`)
+    cell.setAttribute('style', `width:${cellSize}px; height:${cellSize}px;`);
     cellsContainer.appendChild(cell);
-    }
+  }
 }
 createGameboard();
 
@@ -101,7 +101,7 @@ function setBombs(){
       sum += 1;
       downRight.textContent = sum;
     }
-  })
+  });
 }
 
 function endGame(){
@@ -118,7 +118,7 @@ function endGame(){
 
 function clearGameboard(){
   bombsArray = [];
-  cellsContainer.textContent = "";
+  cellsContainer.textContent = '';
   btnStart.disabled = false;
   cellsContainer.classList.add('disabled');
   btnStart.classList.remove('inactive');
@@ -228,7 +228,7 @@ function startGame(){
 }
 
 function makeEasy(){
-  cellSize = 30
+  cellSize = 30;
   cellsInRow = 8;
   amountOfBombs = 6;
   btnDifficult.classList.remove('active');
@@ -237,7 +237,7 @@ function makeEasy(){
 }
 
 function makeDifficult(){
-  cellSize = 26
+  cellSize = 26;
   cellsInRow = 11;
   amountOfBombs = 12;
   btnDifficult.classList.add('active');
@@ -269,9 +269,8 @@ function handleShowCell(){
 
 function handleFlag(e){
   const clickedCell = this;
-  //e.preventDefault();
   if(e.button == 2 && clickedCell.classList.contains('hidden')){
-       if(!clickedCell.innerHTML.includes(flagIcon) && !clickedCell.innerHTML.includes(questionIcon) && counter > 0){
+    if(!clickedCell.innerHTML.includes(flagIcon) && !clickedCell.innerHTML.includes(questionIcon) && counter > 0){
       clickedCell.innerHTML += flagIcon;
       counter--;
       counterContainer.textContent = counter;
@@ -323,8 +322,8 @@ function handleListeners(){
     cell.addEventListener('contextmenu', handleFlag);
     cell.addEventListener('mousedown', handleSurpriseFace);
     cell.addEventListener('mouseup', handleReactionFace);
-  })
-  }
+  });
+}
 
 btnStart.addEventListener('click', startGame);
 btnEasy.addEventListener('click', makeEasy);
