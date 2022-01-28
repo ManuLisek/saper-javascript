@@ -138,6 +138,8 @@ function winGame(){
   face.style.color = 'limegreen';
   clearInterval(idInterval);
   cellsContainer.classList.add('disabled');
+  btnStart.disabled = false;
+  btnStart.classList.remove('inactive');
 }
 
 function checkAroundClickedIndex(clickedIndex){
@@ -208,6 +210,7 @@ function checkAroundClickedIndex(clickedIndex){
 }
 
 function startGame(){
+  clearGameboard();
   btnStart.disabled = true;
   cellsContainer.classList.remove('disabled');
   btnStart.classList.add('inactive');
@@ -221,6 +224,8 @@ function startGame(){
     timer.textContent = `${minutes}:${seconds}`;
     if(seconds === '00' && minutes === 0){
       endGame();
+      btnStart.disabled = false;
+      btnStart.classList.remove('inactive');
     }
   }, 1000);
   setBombs();
@@ -264,6 +269,8 @@ function handleShowCell(){
   }
   else if(clickedCell.innerHTML.includes(bombIcon)){
     clickedCell.style.color = 'red';
+    btnStart.disabled = false;
+    btnStart.classList.remove('inactive');
   }
 }
 
